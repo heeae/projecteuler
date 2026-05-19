@@ -1,5 +1,3 @@
-# not work soln
-
 import math
 primelist = {}
 
