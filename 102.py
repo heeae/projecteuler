@@ -1013,7 +1013,7 @@ def slope(p1, p2):
 def constant(m, p1):
     if m is None:
         return None
-    return  p1[1] - m * p[0]
+    return  p1[1] - m * p1[0]
 
 def yintercept(m, c):
     if m is None:
