@@ -1,4 +1,4 @@
-import sys
+import sys, math
 
 primelist = {}
 
@@ -11,7 +11,10 @@ with open("prime.txt", "rt") as file:
 val = int(sys.argv[1])
 for i in range(max(primelist.keys()) + 1, val):
     notprime = False
+    sqrt = math.sqrt(i)
     for j in primelist.keys():
+        if j > sqrt:
+            break
         if i % j == 0:
             notprime = True
             break
