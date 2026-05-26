@@ -14,10 +14,10 @@ def nextVal():
     return S[fabonCnt - 1]
     
 
-#V keeps tracks of which connected component vertex i is in
+# V keep the mapping to the head of the list of friends
 V = [i for i in range(10**6)]
-#These are the connected components of the graph, initially every vertex is in its own connected component
-#The head of the connected component is itself
+
+# cc keep the friends list with the head of the friends as the key, ("head" mean the smallest one)
 cc = {i:set([i]) for i in range(10**6)}
 
 calls = 0
@@ -33,14 +33,13 @@ while True:
         mergeFrom = connectedcaller if connectedcaller > connectedcalled else connectedcalled
         mergeTo = connectedcaller if connectedcalled > connectedcaller else connectedcalled
         
-        if mergeFrom == mergeTo:
+        if mergeFrom == mergeTo: # they are already friends
             continue
 
-
-        for i in cc[mergeFrom]:
-            V[i] = mergeTo
-        cc[mergeTo] |= cc[mergeFrom]
-        del cc[mergeFrom]
+        for i in cc[mergeFrom]: # put all friends from the larger one to the smaller one
+            V[i] = mergeTo # set the head of the friends
+        cc[mergeTo] |= cc[mergeFrom]  # merge both set
+        del cc[mergeFrom] 
         
     if len(cc[V[522487]]) > 99 * 10 ** 4 - 1:
         print("Result", calls)
